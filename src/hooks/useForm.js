@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export const useForm = (initialForm = {}, formValidations = {}) => {
   const [formState, setFormState] = useState(initialForm);
@@ -7,6 +7,18 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
   useEffect(() => {
     createValidators();
   }, [formState]);
+
+  // Quiero memorizar el valor
+  const isFormValid = useMemo(() => {
+    // Verifica si todas las propiedades del objeto formValidation son nulas, con que una sea null sale del ciclo
+    for (const formValue of Object.keys(formValidation)) {
+      if (formValidation[formValue] !== null) {
+        return false;
+      }
+    }
+
+    return true;
+  }, [formValidation]);
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -25,8 +37,7 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
 
     // Barre el arreglo/objeto de validaciones y analizar cada una de sus propiedades
     for (const formField of Object.keys(formValidations)) {
-      // imprime el nombre de las propiedades
-      // console.log(formField);
+      // console.log(formField);  // imprime el nombre de las propiedades
       const [fn, errorMessage] = formValidations[formField];
 
       // Crea una propiedad computada para cada una de las propiedades de la validación del formulario
@@ -37,6 +48,7 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     }
 
     setFormValidation(formCheckedValues);
+    console.log(formCheckedValues);
   };
 
   return {
@@ -46,5 +58,6 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     onResetForm,
 
     ...formValidation,
+    isFormValid
   };
 };
