@@ -22,11 +22,9 @@ export const LoginPage = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(checkingAuthentication());
-    console.log({ email, password });
   };
 
   const onGoogleSingIn = () => {
-    console.log("onGoogleSingIn");
     dispatch(startGoogleSignIn());
   };
 
