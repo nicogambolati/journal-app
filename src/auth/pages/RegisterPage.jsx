@@ -1,8 +1,11 @@
-import { Grid, Typography, TextField, Link, Button } from "@mui/material";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
+import { Grid, Typography, TextField, Link, Button } from "@mui/material";
+
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
-import { useState } from "react";
+import { startCreatingUserWithEmailPassword } from "../../store/auth";
 
 const formData = {
   email: "",
@@ -11,6 +14,8 @@ const formData = {
 };
 
 export const RegisterPage = () => {
+  const dispatch = useDispatch();
+  const [formSubmited, setFormSubmited] = useState(false);
   const formValidations = {
     email: [(value) => value.includes("@"), "The email must have an @."],
     password: [
@@ -19,8 +24,6 @@ export const RegisterPage = () => {
     ],
     displayName: [(value) => value.length >= 1, "The name is required."],
   };
-
-  const [formSubmited, setFormSubmited] = useState(false)
 
   const {
     formState,
@@ -37,7 +40,8 @@ export const RegisterPage = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setFormSubmited(true);
-    console.log(formState);
+    if (!isFormValid) return;
+    dispatch(startCreatingUserWithEmailPassword(formState));
   };
 
   return (
