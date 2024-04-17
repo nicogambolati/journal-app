@@ -6,8 +6,8 @@ import IconButton from "@mui/material/IconButton";
 export const JournalPage = () => {
   return (
     <JournalLayout>
-      {/* <NothingSelectedView /> */}
-      <NoteView />
+      <NothingSelectedView />
+      {/* <NoteView /> */}
 
       <IconButton
         size="large"
