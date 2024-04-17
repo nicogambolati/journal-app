@@ -5,6 +5,7 @@ import { ImageGallery } from "../components";
 export const NoteView = () => {
   return (
     <Grid
+      className="animate__animated animate__fadeIn animate__faster"
       container
       direction="row"
       justifyContent="space-between"
@@ -41,7 +42,7 @@ export const NoteView = () => {
           minRows={5}
         />
       </Grid>
-        <ImageGallery />
+      <ImageGallery />
     </Grid>
   );
 };
