@@ -8,6 +8,10 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     createValidators();
   }, [formState]);
 
+  useEffect(() => {
+    setFormState(initialForm);
+  }, [initialForm]);
+
   // Quiero memorizar el valor
   const isFormValid = useMemo(() => {
     // Verifica si todas las propiedades del objeto formValidation son nulas, con que una sea null sale del ciclo
@@ -57,6 +61,6 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     onResetForm,
 
     ...formValidation,
-    isFormValid
+    isFormValid,
   };
 };
