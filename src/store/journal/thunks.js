@@ -1,6 +1,14 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { addNewEmptyNote, setActiveNote, savingNewNote, updateNote } from "./journalSlice";
+import {
+  addNewEmptyNote,
+  savingNewNote,
+  setActiveNote,
+  setPhotosToActiveNote,
+  setSaving,
+  updateNote,
+} from "./journalSlice";
+import { fileUpload } from "../../helpers/fileUpload";
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
@@ -21,6 +29,7 @@ export const startNewNote = () => {
       newNote.id = newDoc.id;
     } catch (error) {
       console.log(error);
+      throw new Error(error.message);
     }
 
     // dispatch
@@ -44,8 +53,24 @@ export const startSaveNote = () => {
       await setDoc(docRef, noteToFireStore, { merge: true });
     } catch (error) {
       console.log(error);
+      throw new Error(error.message);
     }
 
     dispatch(updateNote(note));
+  };
+};
+
+export const startUploadingFiles = (files = []) => {
+  return async (dispatch) => {
+    dispatch(setSaving());
+
+    // Sube todas las imagenes a la vez
+    const fileUploadPromises = [];
+    for (const file of files) {
+      fileUploadPromises.push(fileUpload(file));
+    }
+
+    const photosUrls = await Promise.all(fileUploadPromises);
+    dispatch(setPhotosToActiveNote(photosUrls));
   };
 };
