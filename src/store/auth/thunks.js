@@ -4,6 +4,9 @@ import {
   registerUserWithEmailPassword,
   singInWithGoogle,
 } from "../../firebase/providers";
+
+import { loadNotes } from "../../helpers/loadNotes";
+import { setNotes } from "../journal/journalSlice";
 import { checkingCredentials, login, logout } from "./";
 
 export const checkingAuthentication = (email, password) => {
@@ -64,5 +67,15 @@ export const startLogout = () => {
   return async (dispatch) => {
     await logoutFirebase();
     dispatch(logout());
+  };
+};
+
+export const startLoadingNotes = () => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    if (!uid) throw new Error("UID not exist !");
+
+    const notes = await loadNotes(uid);
+    dispatch(setNotes(notes));
   };
 };
