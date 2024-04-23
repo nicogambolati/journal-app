@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import { useDispatch } from "react-redux";
 import { TurnedInNot } from "@mui/icons-material";
 import {
   Grid,
@@ -6,20 +8,23 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { useMemo } from "react";
 
-export const SidebarItem = ({ title, body, id }) => {
+import { setActiveNote } from "../../store/journal/journalSlice";
+
+export const SidebarItem = ({ title = "", body, id, date, imageUrls = [] }) => {
+  const dispatch = useDispatch();
+  const onActive = () => {
+    dispatch(setActiveNote({ title, body, id, date, imageUrls }));
+  };
+
   // Con useMemo, se evita que title.length se realice en cada renderizado del componente, mejora el rendimiento de la app
   const newTitle = useMemo(() => {
     return title.length > 17 ? title.substring(0, 17) + "..." : title;
   }, [title]);
 
-  console.log(title);
-  console.log(newTitle);
-
   return (
     <ListItem disablePadding>
-      <ListItemButton>
+      <ListItemButton onClick={onActive}>
         <ListItemIcon>
           <TurnedInNot />
         </ListItemIcon>
