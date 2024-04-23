@@ -8,7 +8,7 @@ export const Navbar = ({ drawerWidth = 240 }) => {
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(startLogout());
-  }
+  };
 
   return (
     <AppBar
@@ -26,9 +26,16 @@ export const Navbar = ({ drawerWidth = 240 }) => {
         >
           <MenuOutlined />
         </IconButton>
-        <Grid container direction="row" justifyContent="space-between" alignItems={"center"}>
-          <Typography variant="h6" noWrap component='div'>Journal app</Typography>
-          <IconButton sx={{color: 'white' }} onClick={onLogout}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems={"center"}
+        >
+          <Typography variant="h6" noWrap component="div">
+            Journal app
+          </Typography>
+          <IconButton sx={{ color: "white" }} onClick={onLogout}>
             <LogoutOutlined />
           </IconButton>
         </Grid>
