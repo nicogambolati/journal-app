@@ -9,7 +9,7 @@ import { loadNotes } from "../../helpers/loadNotes";
 import { clearNotesLogout, setNotes } from "../journal";
 import { checkingCredentials, login, logout } from "./";
 
-export const checkingAuthentication = (email, password) => {
+export const checkingAuthentication = () => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
   };
