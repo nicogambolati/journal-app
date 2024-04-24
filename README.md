@@ -5,10 +5,9 @@ Is a web application built using React that allows users to create and manage th
 
 ## Installation
 
-
 - It is suggested to use [Node v20.11.1](https://nodejs.org/en/blog/release/v20.11.1).
 
-Install heroes-spa with npm
+Install journal-app with npm
 
 ```bash
   npm install journal-app
@@ -19,7 +18,7 @@ Install heroes-spa with npm
 
 **Client-side Technologies:**
 - Uses HTML, CSS, JavaScript for frontend development.
-- Utilizes React for building interactive user interfaces.
+- Utilizes React.js for building interactive user interfaces.
 - Implements Redux for state management.
 - Integrates Material UI for UI components.
 - Includes Sweet Alert 2 for displaying alerts.
@@ -30,6 +29,9 @@ Install heroes-spa with npm
 **Database:**
 - Uses Cloud Firestore for database storage.
 - Integrates Cloudinary for image storage.
+
+**Testing**
+- Uses Jest.js to test the components and functionalities of the application
 
 ## Demo
 
