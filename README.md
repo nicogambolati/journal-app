@@ -19,7 +19,7 @@ Install journal-app with npm
 **Client-side Technologies:**
 - Uses HTML, CSS, JavaScript for frontend development.
 - Utilizes React.js for building interactive user interfaces.
-- Implements Redux for state management.
+- Implements Redux toolkit for state management.
 - Integrates Material UI for UI components.
 - Includes Sweet Alert 2 for displaying alerts.
 
