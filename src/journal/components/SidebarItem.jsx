@@ -29,7 +29,12 @@ export const SidebarItem = ({ title = "", body, id, date, imageUrls = [] }) => {
           <TurnedInNot />
         </ListItemIcon>
         <Grid container display={"flex"} flexDirection={"column"}>
-          <ListItemText primary={newTitle} />
+          {!!newTitle
+            ? () => {
+                <ListItemText primary={newTitle} />;
+              }
+            : ""}
+
           {!!body ? (
             <ListItemText
               secondary={body}
