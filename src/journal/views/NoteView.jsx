@@ -30,7 +30,7 @@ export const NoteView = () => {
 
   const dateString = useMemo(() => {
     const newDate = new Date(date);
-    return newDate.toUTCString();
+    return newDate.toDateString();
   }, [date]);
 
   const fileInputRef = useRef();
@@ -70,7 +70,7 @@ export const NoteView = () => {
     >
       <Grid item>
         <Typography fontSize={39} fontWeight="light">
-          {dateString}
+        {dateString}
         </Typography>
       </Grid>
       <Grid item>

@@ -28,9 +28,22 @@ export const SidebarItem = ({ title = "", body, id, date, imageUrls = [] }) => {
         <ListItemIcon>
           <TurnedInNot />
         </ListItemIcon>
-        <Grid container>
+        <Grid container display={"flex"} flexDirection={"column"}>
           <ListItemText primary={newTitle} />
-          <ListItemText secondary={body} />
+          {!!body ? (
+            <ListItemText
+              secondary={body}
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "3",
+                WebkitBoxOrient: "vertical",
+              }}
+            />
+          ) : (
+            ""
+          )}
         </Grid>
       </ListItemButton>
     </ListItem>
