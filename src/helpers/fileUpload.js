@@ -1,5 +1,8 @@
 export const fileUpload = async (file) => {
   if (!file) throw new Error("There is no file");
+  /* To testing:
+  //if (!file) throw new Error("There is no file");
+   if (!file) return null; */
 
   const cloudUrl = "https://api.cloudinary.com/v1_1/dlkboaa4x/upload";
   const formData = new FormData();
@@ -19,5 +22,9 @@ export const fileUpload = async (file) => {
   } catch (error) {
     console.log(error);
     throw new Error(error.message);
+    /* To testing:
+    // console.log(error);
+    // throw new Error(error.message);
+    return null; */
   }
 };
