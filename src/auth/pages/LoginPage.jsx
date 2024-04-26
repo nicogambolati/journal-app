@@ -2,14 +2,24 @@ import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import {
-  Grid,
-  Typography,
-  TextField,
-  Button,
-  Link,
   Alert,
+  Button,
+  Grid,
+  Link,
+  TextField,
+  Typography,
 } from "@mui/material";
 import { Google } from "@mui/icons-material";
+
+//? TESTING: Se recomienda importar los componentes por default porque son más rápidos, 
+//? ya que no utiliza todo el bundle de material y es más especifico */
+// import Google  from '@mui/icons-material/Google';
+// import Alert from '@mui/material/Alert';
+// import Button from '@mui/material/Button';
+// import Grid from '@mui/material/Grid';
+// import Link from '@mui/material/Link';
+// import TextField from '@mui/material/TextField';
+// import Typography from '@mui/material/Typography';
 
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
@@ -41,6 +51,7 @@ export const LoginPage = () => {
   return (
     <AuthLayout title="Login">
       <form
+      aria-label="submit-form"
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
       >
@@ -64,6 +75,7 @@ export const LoginPage = () => {
               placeholder="Password"
               fullWidth
               name="password"
+              inputProps={{ "data-testid": "password" }}
               value={password}
               onChange={onInputChange}
             />
@@ -93,6 +105,7 @@ export const LoginPage = () => {
                 fullWidth
                 onClick={onGoogleSingIn}
                 disabled={isAuthenticating}
+                aria-label="google-btn"
               >
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>
